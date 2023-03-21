@@ -7,29 +7,32 @@ import (
 	"strings"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/hostrouter"
 )
 
 func main() {
 	r := chi.NewRouter()
 
-	hr := hostrouter.New()
+	// hr := hostrouter.New()
 
-	// Requests to api.domain.com
-	hr.Map("", newHellStudios()) // default
-	hr.Map("newhellstudios.com", newHellStudios())
+	// // Requests to api.domain.com
+	// hr.Map("", newHellStudios()) // default
+	// hr.Map("newhellstudios.com", newHellStudios())
 
-	// Requests to doma.in
-	hr.Map("rozeblud.com", rozeBlud())
+	// // Requests to doma.in
+	// hr.Map("rozeblud.com", rozeBlud())
 
-	// // Requests to *.doma.in
-	// hr.Map("*.doma.in", rozeBlud())
+	// // // Requests to *.doma.in
+	// // hr.Map("*.doma.in", rozeBlud())
 
-	// // Requests to host that isn't defined above
-	// hr.Map("*", everythingElseRouter())
+	// // // Requests to host that isn't defined above
+	// // hr.Map("*", everythingElseRouter())
 
-	// Mount the host router
-	r.Mount("/", hr)
+	// // Mount the host router
+	// r.Mount("/", hr)
+
+	workDir, _ := os.Getwd()
+	filesDir := http.Dir(filepath.Join(workDir, "newhellstudios.com"))
+	FileServer(r, "/", filesDir)
 
 	http.ListenAndServe(":80", r)
 }
