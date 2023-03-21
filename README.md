@@ -1,3 +1,8 @@
+# Digital Ocean
+I uploaded public key with `cat ~/.ssh/id_rsa.pub` and echoing the output with `echo public_key_string >> ~/.ssh/authorized_keys`. then i can use `doctl compute ssh vcp-nyc` to get into my droplet.
+
+If we could somehow make this repo like `katsikas-web` and it could pull in `entities` as a dependency. the routing and service container setup could potentially happen in the web, as well as the host routing, and file system work.
+
 # HostRouter
 
 `hostrouter` is a small Go pkg to let you route traffic to different http handlers or routers
