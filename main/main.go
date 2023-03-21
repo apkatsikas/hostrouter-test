@@ -31,7 +31,12 @@ func main() {
 	// Mount the host router
 	r.Mount("/", hr)
 
-	http.ListenAndServe(":80", r)
+	http.ListenAndServeTLS(
+		":443",
+		"/etc/letsencrypt/live/newhellstudios.com/fullchain.pem",
+		"/etc/letsencrypt/live/newhellstudios.com/privkey.pem",
+		r,
+	)
 }
 
 // Router for the API service
